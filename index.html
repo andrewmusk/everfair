@@ -24,13 +24,10 @@
   .sun { width: 84px; height: 84px; margin: 0; background: var(--sun-core);
     box-shadow: 0 0 40px 16px var(--sun-a), 0 0 150px 70px var(--sun-b); }
   .moon { width: 78px; height: 78px; opacity: 0;
-    background: radial-gradient(circle at 38% 36%, #f4f8ff 0%, #d3e2fb 55%, #a9c2ee 100%);
-    box-shadow: 0 0 30px 10px rgba(150,185,255,.38), 0 0 120px 50px rgba(90,130,230,.22); }
-  .moon::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
-    background:
-      radial-gradient(circle at 60% 32%, rgba(120,145,190,.32) 0 9%, transparent 10%),
-      radial-gradient(circle at 36% 64%, rgba(120,145,190,.26) 0 12%, transparent 13%),
-      radial-gradient(circle at 70% 66%, rgba(120,145,190,.2) 0 6%, transparent 7%); }
+    background: radial-gradient(circle at 36% 33%, #f3efe4 0%, #ddd7c6 38%, #bdb6a2 70%, #99927e 100%);
+    box-shadow: 0 0 16px 5px rgba(225,218,196,.25), 0 0 60px 22px rgba(190,183,160,.1); }
+  .moon::after { content: ""; position: absolute; inset: 0; border-radius: 50%; mix-blend-mode: multiply; opacity: .6;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cfilter id='b' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeGaussianBlur stdDeviation='2.4'/%3E%3C/filter%3E%3C/defs%3E%3Cg fill='%237d7566' filter='url(%23b)'%3E%3Cellipse cx='38' cy='30' rx='15' ry='12' transform='rotate(-15 38 30)'/%3E%3Cellipse cx='26' cy='56' rx='10' ry='21' transform='rotate(-10 26 56)'/%3E%3Ccircle cx='61' cy='34' r='10'/%3E%3Cellipse cx='72' cy='48' rx='12' ry='9' transform='rotate(25 72 48)'/%3E%3Cellipse cx='46' cy='73' rx='9' ry='7'/%3E%3Ccircle cx='80' cy='27' r='4.5'/%3E%3Ccircle cx='35' cy='80' r='5'/%3E%3C/g%3E%3C/svg%3E") center/100% 100%; }
 
   .haze { position: fixed; left: 0; top: 0; pointer-events: none; opacity: 0;
     background: radial-gradient(ellipse at 50% 85%, rgba(235,170,120,.45) 0%, rgba(230,150,110,.15) 38%, rgba(255,120,60,0) 68%); }
@@ -301,7 +298,7 @@
 
     // light on the tree: edge glow from the sun or moon, and a cast shadow on the ground
     var useSun = n < .5;
-    setV('--rim', useSun ? rgba(gc, ((.08 + .3 * w) * (1 - n)).toFixed(3)) : rgba('#9bbcff', (.12 * moonOp).toFixed(3)));
+    setV('--rim', useSun ? rgba(gc, ((.08 + .3 * w) * (1 - n)).toFixed(3)) : rgba('#d9d3bd', (.12 * moonOp).toFixed(3)));
     var v = clamp(useSun ? (p - .5) * 2 : (mp - .5) * 2, -1, 1);
     var sa = useSun ? (1 - n) * clamp(e * 8, 0, 1) * (.14 + .3 * Math.abs(v)) : moonOp * .12;
     shadow.style.opacity = sa.toFixed(3);
